@@ -1,0 +1,283 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Instagram, 
+  MessageCircle, 
+  CheckCircle, 
+  ArrowRight, 
+  Users, 
+  BookOpen, 
+  GraduationCap, 
+  Play,
+  Menu,
+  X,
+  Star
+} from 'lucide-react';
+
+const App = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-[#FDFBF7] text-slate-900 font-sans selection:bg-orange-200">
+      
+      {/* --- NAVIGATION --- */}
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
+        <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">T</div>
+            <span className="font-bold text-xl tracking-tight">coursdeturc<span className="text-orange-600">.com</span></span>
+          </div>
+          
+          <div className="hidden md:flex items-center gap-8 font-medium">
+            <a href="#methode" className="hover:text-orange-600 transition-colors">La Méthode</a>
+            <a href="#offres" className="hover:text-orange-600 transition-colors">Nos Offres</a>
+            <a href="#avis" className="hover:text-orange-600 transition-colors">Avis</a>
+            <a href="https://instagram.com" className="flex items-center gap-2 bg-orange-600 text-white px-5 py-2 rounded-full hover:bg-orange-700 transition-all shadow-md">
+              <Instagram size={18} />
+              <span>Suis-nous</span>
+            </a>
+          </div>
+
+          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
+      </nav>
+
+      {/* --- MOBILE MENU --- */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center gap-8 text-2xl font-bold md:hidden">
+          <a href="#methode" onClick={() => setIsMenuOpen(false)}>La Méthode</a>
+          <a href="#offres" onClick={() => setIsMenuOpen(false)}>Nos Offres</a>
+          <a href="#avis" onClick={() => setIsMenuOpen(false)}>Avis</a>
+          <a href="https://instagram.com" className="flex items-center gap-2 text-orange-600">
+            <Instagram size={24} />
+            <span>Instagram</span>
+          </a>
+        </div>
+      )}
+
+      {/* --- HERO SECTION --- */}
+      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+          <div className="z-10">
+            <span className="inline-block bg-orange-100 text-orange-700 px-4 py-1 rounded-full text-sm font-bold mb-6">
+              Une méthode unique d'apprentissage du Turc pour les Francophones
+            </span>
+            <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6">
+              Apprenez le turc, <br/>
+              <span className="text-orange-600">de manière pratique</span> et ludique.
+            </h1>
+            <p className="text-lg text-slate-600 mb-10 max-w-lg leading-relaxed">
+              Une méthode pensée pour les francophones. Pas de jargon inutile, mais un apprentissage pratique et tout de suite appliquable de la langue turque. N'attendez plus et Rejoignez nous !
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button className="bg-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-orange-200 hover:bg-orange-700 transition-all flex items-center justify-center gap-2">
+                Commencer maintenant <ArrowRight size={20} />
+              </button>
+              <button className="bg-white border-2 border-slate-200 px-8 py-4 rounded-xl font-bold text-lg hover:border-orange-600 transition-all flex items-center justify-center gap-2">
+                <Play size={20} className="text-orange-600 fill-orange-600" /> Voir le concept
+              </button>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="w-full aspect-square rounded-3xl bg-orange-200 overflow-hidden shadow-2xl relative">
+               <img 
+                src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&q=80&w=1000" 
+                alt="Istanbul" 
+                className="w-full h-full object-cover mix-blend-multiply opacity-80"
+               />
+               <div className="absolute inset-0 bg-gradient-to-t from-orange-900/40 to-transparent"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- REASSURANCE --- */}
+      <section className="py-12 border-y border-slate-100 bg-white">
+        <div className="max-w-6xl mx-auto px-6 flex flex-wrap justify-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all">
+          <div className="flex items-center gap-2 font-bold text-xl">COACHING PERSONNALISÉ </div>
+          <div className="flex items-center gap-2 font-bold text-xl">GROUPE ou INDIVIDUEL </div>
+          <div className="flex items-center gap-2 font-bold text-xl">100% EN LIGNE </div>
+        </div>
+      </section>
+
+      {/* --- METHODE SECTION --- */}
+      <section id="methode" className="py-24 bg-slate-50">
+        <div className="max-w-6xl mx-auto px-6 text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4">Pourquoi choisir cette école  ?</h2>
+          <p className="text-slate-600 max-w-2xl mx-auto">J'ai adapté l'apprentissage de la langue turque pour la rendre accessible aux francophones.</p>
+        </div>
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+          {[
+            {
+              icon: <BookOpen className="text-blue-600" />,
+              title: "Logique Inversée",
+              desc: "Je ne vous apprend pas juste des mots, je vous apprend à penser comme un Turc."
+            },
+            {
+              icon: <GraduationCap className="text-orange-600" />,
+              title: "Pofesseure diplômée",
+              desc: "Diplômée en enseignement des langues et formatrice pour adulte, je vous accompagne tout au long de votre apprentissage."
+            },
+            {
+              icon: <MessageCircle className="text-emerald-600" />,
+              title: "Support Whatsap",
+              desc: "Une communauté active d'élèves et votre professeure disponible sur WhatsApp pour vos questions."
+            }
+          ].map((item, idx) => (
+            <div key={idx} className="bg-white p-10 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl transition-all group">
+              <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                {item.icon}
+              </div>
+              <h3 className="text-xl font-bold mb-4">{item.title}</h3>
+              <p className="text-slate-600 leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* --- OFFRES SECTION --- */}
+      <section id="offres" className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div className="text-left">
+              <h2 className="text-4xl font-bold mb-4">Nos Parcours</h2>
+              <p className="text-slate-600">Choisissez la formule qui correspond à votre rythme.</p>
+            </div>
+            <div className="flex bg-slate-100 p-1 rounded-xl">
+              <button className="bg-white px-6 py-2 rounded-lg font-bold shadow-sm">Individuel</button>
+              <button className="px-6 py-2 rounded-lg font-bold text-slate-500">Groupe</button>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-slate-900 text-white p-12 rounded-[2.5rem] relative overflow-hidden group">
+              <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-150 transition-transform duration-700">
+                <BookOpen size={150} />
+              </div>
+              <h3 className="text-3xl font-bold mb-4 italic text-orange-400">Cours individuels </h3>
+              <p className="text-slate-400 mb-8 max-w-xs">Idéal pour les voyageurs et les débutants curieux.</p>
+              <ul className="space-y-4 mb-12">
+                <li className="flex items-center gap-3"><CheckCircle className="text-orange-400" size={20} /> Cours d'1h avec le professeur</li>
+                <li className="flex items-center gap-3"><CheckCircle className="text-orange-400" size={20} /> Accès à la plateforme de cours</li>
+                <li className="flex items-center gap-3"><CheckCircle className="text-orange-400" size={20} /> Evaluation du niveau</li>
+                <li className="flex items-center gap-3"><CheckCircle className="text-orange-400" size={20} /> Coaching personnalisé</li>
+              </ul>
+              <div className="flex items-baseline gap-2 mb-8">
+                <span className="text-4xl font-bold">39€</span>
+                <span className="text-slate-400 text-sm">/ unique</span>
+              </div>
+              <button className="w-full bg-orange-600 py-4 rounded-2xl font-bold hover:bg-orange-500 transition-colors">Je réserve</button>
+            </div>
+
+            <div className="bg-orange-50 p-12 rounded-[2.5rem] border-2 border-orange-200 relative">
+              <div className="absolute -top-4 right-8 bg-orange-600 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg">PLUS POPULAIRE</div>
+              <h3 className="text-3xl font-bold mb-4 text-orange-900 italic">Cours en groupe</h3>
+              <p className="text-slate-600 mb-8 max-w-xs">Progesser à votre rythme avec un accompagnement personnalisé.</p>
+              <ul className="space-y-4 mb-12">
+                <li className="flex items-center gap-3 text-slate-800 font-medium"><CheckCircle className="text-orange-600" size={20} /> Livre d'exercices et de cours offert</li>
+                <li className="flex items-center gap-3 text-slate-800 font-medium"><CheckCircle className="text-orange-600" size={20} /> 2 Session Live d'1h par semaine</li>
+                <li className="flex items-center gap-3 text-slate-800 font-medium"><CheckCircle className="text-orange-600" size={20} /> Coaching WhatsApp privé</li>
+                <li className="flex items-center gap-3 text-slate-800 font-medium"><CheckCircle className="text-orange-600" size={20} /> Evaluations progressives</li>
+              </ul>
+              <div className="flex items-baseline gap-2 mb-8">
+                <span className="text-4xl font-bold text-slate-900">149€</span>
+                <span className="text-slate-500 text-sm">/ mois</span>
+              </div>
+              <button className="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold hover:bg-slate-800 transition-colors">Je commence</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- AVIS SECTION --- */}
+      <section id="avis" className="py-24 bg-slate-900 text-white overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 className="text-4xl font-bold mb-8 italic">"Le turc n'est plus un mur, c'est un pont."</h2>
+            <div className="space-y-8">
+              <div className="bg-white/5 p-8 rounded-3xl backdrop-blur-sm border border-white/10">
+                <div className="flex gap-1 mb-4">
+                  {[1,2,3,4,5].map(i => <Star key={i} size={16} className="fill-orange-400 text-orange-400" />)}
+                </div>
+                <p className="text-lg italic mb-6">"Virginie a une manière d'expliquer qui change tout. Ses cours sont intéractifs et très pratiques, je recommande à 100%."</p>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center font-bold">M</div>
+                  <div>
+                    <p className="font-bold">Tania</p>
+                    <p className="text-xs text-slate-400 uppercase tracking-widest">Expatriée à Fethiye</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="relative">
+             <div className="grid grid-cols-2 gap-4 animate-float">
+                <div className="bg-white/10 aspect-square rounded-2xl overflow-hidden">
+                   <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&q=80&w=400" alt="Student" className="w-full h-full object-cover" />
+                </div>
+                <div className="bg-white/10 aspect-square rounded-2xl overflow-hidden mt-8">
+                   <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=400" alt="Student" className="w-full h-full object-cover" />
+                </div>
+                <div className="bg-white/10 aspect-square rounded-2xl overflow-hidden -mt-8">
+                   <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=400" alt="Community" className="w-full h-full object-cover" />
+                </div>
+                <div className="bg-white/10 aspect-square rounded-2xl overflow-hidden">
+                   <img src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&q=80&w=400" alt="Success" className="w-full h-full object-cover" />
+                </div>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- FOOTER / CTA FINAL --- */}
+      <footer className="bg-white py-20 border-t border-slate-100">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold mb-6 italic">Prêt à parler le turc avec confiance ?</h2>
+          <p className="text-slate-500 mb-10 max-w-md mx-auto">Rejoins notre communauté et commence ton premier cours aujourd'hui.</p>
+          <div className="flex justify-center gap-4 mb-16">
+             <a href="https://instagram.com" className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center hover:bg-orange-600 hover:text-white transition-all">
+                <Instagram size={24} />
+             </a>
+             <a href="https://whatsapp.com" className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all">
+                <MessageCircle size={24} />
+             </a>
+          </div>
+          <div className="pt-10 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-orange-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">T</div>
+              <span className="font-bold text-lg">CoursDeTurc.com</span>
+            </div>
+            <p className="text-slate-400 text-sm">© 2024 coursdeturc.com - Tous droits réservés.</p>
+            <div className="flex gap-6 text-sm font-medium text-slate-500">
+              <a href="#">Mentions Légales</a>
+              <a href="#">CGV</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes bounce-slow {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-15px) rotate(2deg); }
+        }
+        .animate-bounce-slow { animation: bounce-slow 4s ease-in-out infinite; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+      `}} />
+    </div>
+  );
+};
+
+export default App;
